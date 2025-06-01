@@ -1,40 +1,71 @@
 import {
-  Box, Flex, Text, 
+  Box, Flex, useBreakpointValue,
 } from "@chakra-ui/react";
 import Topbar from "./Topbar";
+import SidebarContent from "./Sidebar";
 import {
-  useColorModeValue,
+  useColorModeValue as useColorModeValueCustom,
 } from "@/components/ui/color-mode";
+import { useState } from 'react';
+
+import Products from '../components/pages/Products';
+import Dashboard from '../components/pages/Dashboard'; 
+
+const Layout = () => {
+  const bgColor = useColorModeValueCustom("#12182B", "gray.200"); // Gunakan alias
+  // const bgbox = useColorModeValueCustom("#0E1111", "white"); // Gunakan alias
+  const textColor = useColorModeValueCustom("white", "#0E1111"); // Gunakan alias
 
 
-const Layout = ({ children }) => {
-  const bgColor = useColorModeValue("#0E1111", "white");
-  const textColor = useColorModeValue("white", "#0E1111");
+
+  // Placeholder untuk konten halaman
+
+  const [activePage, setActivePage] = useState('Dashboard');
+  const renderActivePage = () => {
+    switch (activePage) {
+      case 'Products':
+        return <Products />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
+
+
+  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const sidebarWidth = "240px"; // Sesuaikan jika lebar sidebar Anda berbeda (misal md: 60 -> 240px)
 
   return (
-    <Flex direction="column" minH="100vh" bg={bgColor} >
-      {/* Topbar */}
-      <Topbar />
-      <Box
-        flex="1"
-        px={{ base: 6, md: 10 }}
-        py={{ base: 1, md: 5 }}
-        maxW="800px"
-        mx="auto"
-        color={textColor}
-      >
-        {children}
-      </Box>
+    <Flex
+      flexDirection="row" // Di desktop, sidebar akan di samping, konten utama di kanan
+      minH="100vh"
+      bg={bgColor}
+    >
+      {isDesktop && <SidebarContent
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />}
 
-      {/* Footer */}
-      <Box textAlign="center" py={6}>
-        <Text fontSize="sm" color={textColor}>
-          © 2025 By{" "}
-          <Text as="span" fontWeight="bold" textDecoration="underline" color={textColor}>
-            AppankDev
-          </Text>
-        </Text>
-      </Box>
+      <Flex
+        flex="1"
+        flexDirection="column"
+        ml={isDesktop ? sidebarWidth : "0"}
+      >
+        <Topbar />
+
+        {/* 2b. Konten utama */}
+        <Box
+          as="main"
+          flex="1" 
+          // overflowY="auto"
+          px={{ base: 4, md: 6 }}
+          py={{ base: 4, md: 6 }}
+          color={textColor}
+        >
+          {renderActivePage()}
+        </Box>
+
+      </Flex>
     </Flex>
   );
 };

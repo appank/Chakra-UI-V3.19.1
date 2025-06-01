@@ -1,44 +1,36 @@
 import {
   Flex,
-  Heading,
-  Spacer,
-  Link as ChakraLink,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
-
+  Box,
+} from "@chakra-ui/react";
 import {
-  useColorModeValue,
+  useColorModeValue as useColorModeValueCustom,
   ColorModeButton,
 } from "@/components/ui/color-mode";
 
 export default function Topbar() {
-  const bgColor = useColorModeValue("#0E1111", "white");
-  const textColor = useColorModeValue("white", "#0E1111");
 
+  const bgColor = useColorModeValueCustom("#12182B", "white"); // Gunakan alias
+  // const textColor = useColorModeValueCustom("white", "#0E1111"); // Gunakan alias
   return (
-    <Flex
-      p={4}
+    //make colomn
+
+    <Box
+      px={6}
+      py={4}
       align="center"
-      flexDirection={{ base: 'column', md: 'row' }}
-      px={{ base: 6, md: 10 }}
-      py={{ base: 10, md: 20 }}
+      justify="space-between"
+      position="sticky"
+      top="0"
+      zIndex="1000"
       bg={bgColor}
-      color={textColor}
-      maxW="800px"
-      mx="auto"
+      borderBottom="2px solid"
+      borderColor={useColorModeValueCustom("#17223C", "transparent")}
+      h={"80px"}
     >
-      <Heading size="md" fontWeight="bold" mb={{ base: 4, md: 0 }} as="span"
-                      bgGradient="to-r" gradientFrom="green.300" gradientTo="blue.500"
-                      bgClip="heading">
-        Chakra Ui V3.19.1
-      </Heading>
-      <Spacer />
-      <Flex gap={6} pl={3} align="center">
-        <ChakraLink as={RouterLink} to="/"color={textColor}>Home</ChakraLink>
-        <ChakraLink as={RouterLink} to="/projects" color={textColor}>Projects</ChakraLink>
-        <ChakraLink as={RouterLink} to="/about" color={textColor}>About</ChakraLink>
+      <Flex gap={6} pl={3} align="right">
         <ColorModeButton />
       </Flex>
-    </Flex>
+
+    </Box>
   );
 }

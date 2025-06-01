@@ -2,8 +2,8 @@ import { Box, Heading, } from "@chakra-ui/react";
 
 
 
-function Home() {
-    return (
+function Dashboard() {
+  return (
           <Box
               data-state="open"
               _open={{
@@ -15,8 +15,8 @@ function Home() {
                   animationDuration: "120ms",
               }}
           >
-          <Heading className="animate__animated animate__fadeIn" fontSize="4xl" mb={2}>Dashboard</Heading>
-      </Box>
+              <Heading className="animate__animated animate__fadeIn" fontSize="4xl" mb={2}>Dashboard</Heading>
+          </Box>
   );
 }
-export default Home; 
+export default Dashboard; 

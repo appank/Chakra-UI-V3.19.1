@@ -31,6 +31,7 @@ export function useColorModeValue(light, dark) {
 export function ColorModeIcon() {
   const { colorMode } = useColorMode()
   return colorMode === "light" ? <LuSun /> : <LuMoon />
+
 }
 
 export const ColorModeButton = React.forwardRef(
@@ -40,7 +41,7 @@ export const ColorModeButton = React.forwardRef(
       <ClientOnly fallback={<Skeleton boxSize="8" />}>
         <IconButton
           onClick={toggleColorMode}
-          variant="ghost"
+          variant="surface"
           aria-label="Toggle color mode"
           size="sm"
           ref={ref}
