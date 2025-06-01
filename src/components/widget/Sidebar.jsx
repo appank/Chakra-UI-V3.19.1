@@ -90,8 +90,6 @@ const SidebarContent = ({ activePage, setActivePage }) => {
         { name: 'Logout', icon: FiLogOut },
     ];
 
-    // Warna teks utama untuk Heading dan Text (judul section)
-    // const headingColor = useColorModeValueCustom('gray.100', 'gray.700'); // Lebih terang di dark mode
     const sectionTitleColor = useColorModeValueCustom('gray.400', 'gray.500'); // Lebih terang di dark mode
 
     // Warna garis border kanan sidebar
