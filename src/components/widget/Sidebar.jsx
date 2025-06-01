@@ -1,7 +1,6 @@
 import {
     Box,
     VStack,
-   
     Text,
     Icon,
     Heading,
@@ -48,7 +47,7 @@ const NavItem = ({ icon, children, isActive, onClick }) => {
             borderRadius="lg"
             role="group"
             cursor="pointer"
-             w={'80%'} 
+            w={'80%'} 
             bg={isActive ? activeBg : 'transparent'}
             color={isActive ? activeColor : inactiveColor}
             _hover={{
@@ -74,7 +73,7 @@ const NavItem = ({ icon, children, isActive, onClick }) => {
 
 const SidebarContent = ({ activePage, setActivePage }) => {
     const menuItems = [
-        { name: 'Dashboard', icon: FiHome,  },//isActive: true
+        { name: 'Dashboard', icon: FiHome, },
         { name: 'Products', icon: FiBox },
         { name: 'Favorites', icon: FiHeart },
         { name: 'Inbox', icon: FiInbox },
